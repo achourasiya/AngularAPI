@@ -132,13 +132,18 @@
     <Compile Include="AuthContext.cs" />
     <Compile Include="AuthRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\Helper.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\RefreshTokensController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Migrations\201502070842079_AngularJS.cs" />
-    <Compile Include="Migrations\201502070842079_AngularJS.Designer.cs">
-      <DependentUpon>201502070842079_AngularJS.cs</DependentUpon>
+    <Compile Include="Migrations\201502111536561_API.cs" />
+    <Compile Include="Migrations\201502111536561_API.Designer.cs">
+      <DependentUpon>201502111536561_API.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Enums.cs" />
@@ -167,15 +172,15 @@
     <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201502070842079_AngularJS.resx">
-      <DependentUpon>201502070842079_AngularJS.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AngularJSAuthentication.Model\AngularJSAuthentication.Model.csproj">
       <Project>{33141331-a9f8-4419-9fd2-9d52ec18043b}</Project>
       <Name>AngularJSAuthentication.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201502111536561_API.resx">
+      <DependentUpon>201502111536561_API.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

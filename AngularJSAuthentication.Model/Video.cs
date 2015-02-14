@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace AngularJSAuthentication.Model
 {
-   public class Project
+  public  class Video
     {
-        public int ProjectID { get; set; }
-        public string ProjectName { get; set; }
-        public string Discription { get; set; }
+        public int videoId { get; set; }
+        public string title { get; set; }
+        public string discription { get; set; }
+        public string url { get; set; }
+        public string imageUrl { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdateBy { get; set; }
-        public bool Deleted { get; set; }
-       
     }
 }

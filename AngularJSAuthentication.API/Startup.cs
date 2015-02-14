@@ -30,7 +30,7 @@ namespace AngularJSAuthentication.API
             WebApiConfig.Register(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AuthContext, AngularJSAuthentication.API.Migrations.Configuration>());
+           Database.SetInitializer(new MigrateDatabaseToLatestVersion<AuthContext, AngularJSAuthentication.API.Migrations.Configuration>());
 
         }
 
@@ -65,8 +65,8 @@ namespace AngularJSAuthentication.API
             //Configure Facebook External Login
             facebookAuthOptions = new FacebookAuthenticationOptions()
             {
-                AppId = "773783202692440",
-                AppSecret = "f723630c452523f9c23fa8f3dd86ac25",
+                AppId = "xxxxxx",
+                AppSecret = "xxxxxx",
                 Provider = new FacebookAuthProvider()
             };
             app.UseFacebookAuthentication(facebookAuthOptions);

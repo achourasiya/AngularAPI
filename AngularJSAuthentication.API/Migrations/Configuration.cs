@@ -1,9 +1,6 @@
 namespace AngularJSAuthentication.API.Migrations
 {
-    
-    using AngularJSAuthentication.Model;
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -17,41 +14,18 @@ namespace AngularJSAuthentication.API.Migrations
 
         protected override void Seed(AngularJSAuthentication.API.AuthContext context)
         {
-            if (context.Clients.Count() > 0)
-            {
-                return;
-            }
+            //  This method will be called after migrating to the latest version.
 
-            context.Clients.AddRange(BuildClientsList());
-            context.SaveChanges();
-        }
-
-        private static List<Client> BuildClientsList()
-        {
-
-            List<Client> ClientsList = new List<Client> 
-            {
-                new Client
-                { Id = "ngAuthApp", 
-                    Secret= Helper.GetHash("abc@123"), 
-                    Name="AngularJS front-end Application", 
-                    ApplicationType =   ApplicationTypes.JavaScript,
-                    Active = true, 
-                    RefreshTokenLifeTime = 7200, 
-                    AllowedOrigin = "http://ngauthenticationweb.azurewebsites.net"
-                },
-                new Client
-                { Id = "consoleApp", 
-                    Secret=Helper.GetHash("123@abc"), 
-                    Name="Console Application", 
-                    ApplicationType =ApplicationTypes.NativeConfidential, 
-                    Active = true, 
-                    RefreshTokenLifeTime = 14400, 
-                    AllowedOrigin = "*"
-                }
-            };
-
-            return ClientsList;
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
         }
     }
 }

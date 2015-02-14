@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AngularJSAuthentication.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,53 +12,70 @@ namespace AngularJSAuthentication.API.Controllers
     [RoutePrefix("api/Projects")]
     public class ProjectsController : ApiController
     {
+        iAuthContext context = new AuthContext();
+
         [Authorize]
         [Route("")]
-        public IHttpActionResult Get()
+        public IEnumerable<Project> Get()
         {
 
-            AuthContext context = new AuthContext();
-         
-            //ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
-
-            //var Name = ClaimsPrincipal.Current.Identity.Name;
-            //var Name1 = User.Identity.Name;
-
-            //var userName = principal.Claims.Where(c => c.Type == "sub").Single().Value;
-
-            return Ok(Project.CreateOrders());
+            return context.AllProjects;
         }
 
-    }
-
-
-    #region Helpers
-
-    public class Project
-    {
-        public int ProjectID { get; set; }
-        public string ProjectName { get; set; }
-        public string Discription { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdateBy { get; set; }
-        public static List<Project> CreateOrders()
+        public Project Add(Project item)
         {
-            List<Project> OrderList = new List<Project> 
+            if (item == null)
             {
-                new Project {ProjectID = 10248, ProjectName = "Taiseer 1 Joudeh", Discription = "Amman",CreatedDate = DateTime.Now,UpdatedDate =DateTime.Now,CreatedBy ="Akhilesh",UpdateBy="Akhilesh" },
-               new Project {ProjectID = 10241, ProjectName = "Taiseer 2 Joudeh", Discription = "Amman",CreatedDate = DateTime.Now,UpdatedDate =DateTime.Now,CreatedBy ="Akhilesh",UpdateBy="Akhilesh" },
-               new Project {ProjectID = 10242, ProjectName = "Taiseer3 Joudeh", Discription = "Amman",CreatedDate = DateTime.Now,UpdatedDate =DateTime.Now,CreatedBy ="Akhilesh",UpdateBy="Akhilesh" },
-               new Project {ProjectID = 10243, ProjectName = "Taiseer4  Joudeh", Discription = "Amman",CreatedDate = DateTime.Now,UpdatedDate =DateTime.Now,CreatedBy ="Akhilesh",UpdateBy="Akhilesh" },
-               new Project {ProjectID = 10244, ProjectName = "Taiseer5 Joudeh", Discription = "Amman",CreatedDate = DateTime.Now,UpdatedDate =DateTime.Now,CreatedBy ="Akhilesh",UpdateBy="Akhilesh" },
-               new Project {ProjectID = 10245, ProjectName = "Taiseer 6 Joudeh", Discription = "Amman",CreatedDate = DateTime.Now,UpdatedDate =DateTime.Now,CreatedBy ="Akhilesh",UpdateBy="Akhilesh" }
-              
-            };
+                throw new ArgumentNullException("item");
+            }
 
-            return OrderList;
+            context.AddProject(item);
+
+            return item;
         }
+
+        public void Remove(int id)
+        {
+            context.DeleteProject(id);
+        }
+
+        public bool Update(Project item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException("item");
+            }
+
+            Project index = context.UpdateProject(item);
+            if (index == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        
+        //[Authorize]
+        //[Route("")]
+        //public IHttpActionResult Get()
+        //{
+
+        //    AuthContext context = new AuthContext();
+         
+        //    //ClaimsPrincipal principal = Request.GetRequestContext().Principal as ClaimsPrincipal;
+
+        //    //var Name = ClaimsPrincipal.Current.Identity.Name;
+        //    //var Name1 = User.Identity.Name;
+
+        //    //var userName = principal.Claims.Where(c => c.Type == "sub").Single().Value;
+
+        //    return Ok(Helper.CreateProjects());
+        //}
+
     }
 
-    #endregion
+
 }
+
+
+
